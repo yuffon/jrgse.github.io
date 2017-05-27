@@ -1,19 +1,146 @@
-<!DOCTYPE HTML>
-<!DOCTYPE html><html lang="en-us">
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/temporalTest/assets/css/style.css?v=f77b173e5503ac20c90098059e1e7245511a3330">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">temporalTest</h1>
+      <h2 class="project-tagline"></h2>
+      
+        <a href="https://github.com/srv4j/temporalTest" class="btn">View on GitHub</a>
+      
+      
+    </section>
 
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<!-- Enable responsiveness on mobile devices--><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="author" content="Hengbiao Yu">
-<title>RGSE: A Regular Property Guided Symbolic Executor for Java</title>
-<!-- CSS --><link rel="stylesheet" href="css/syntax.css">
-<link rel="stylesheet" href="css/screen.css">
-<!-- Syntax highlighting --><link rel="stylesheet" href="assets/js/styles/default.css">
-<script src="assets/js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script><!-- RSS --><!-- <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml"> -->
-</head>
-     
+    <section class="main-content">
+      <h1 id="tutorials">﻿Tutorials</h1>
+<p>we provide two tutorials for RGSE. We first apply RGSE to analyze a motivation program with respect to the <code class="highlighter-rouge">reader</code> property, i.e., the inputStreamReader cannot read while closed. 
+Then, we present the analyzing for program <code class="highlighter-rouge">Rohino-a</code> with respect to the <code class="highlighter-rouge">Enumeration</code> property, i.e., invoking hasMoreElements before nextElement.</p>
 
-<p> This is the tutorial! </p>
+<hr />
 
-</body>
+<h2 id="a-motivation-example"><strong>A Motivation Example</strong></h2>
+
+<p>The motivation example is shown below. We make the three integer variables m, n, and tag symbolic, and initialize them to 1, 1, and 5, respectively. 
+Obviously, when tag equals 0 and n is positive, a violation of the reader property exists.</p>
+
+<p><img src="https://raw.githubusercontent.com/srv4j/images/master/moti.jpg" alt="program" /></p>
+
+<hr />
+
+<h2 id="1-analysis-driver"><strong>(1). Analysis Driver</strong></h2>
+
+<p>The driver gives the entry point of the analysis, and contains two main modules, i.e., 
+property specification and running configuration.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">Property Specification</code>:</li>
+</ul>
+
+<p>We specify the property to be checked as a finite state machine (FSM), where <code class="highlighter-rouge">I</code>, <code class="highlighter-rouge">R</code>, and <code class="highlighter-rouge">C</code> represent the <code class="highlighter-rouge">init</code>, 
+<code class="highlighter-rouge">read</code>, and <code class="highlighter-rouge">close</code> event of the <code class="highlighter-rouge">reader</code> property. We recognize an event through comparing its class type and method 
+name with the property specification.</p>
+
+<p><img src="https://raw.githubusercontent.com/srv4j/images/master/FSA_moti.jpg" alt="fsm_spec" />
+<img src="https://raw.githubusercontent.com/srv4j/images/master/FSM.jpg" alt="fsm" /></p>
+
+<hr />
+
+<ul>
+  <li><code class="highlighter-rouge">Running Configuration</code>:</li>
+</ul>
+
+<p>After writing the property specification, we need to configure RGSE. Specifically, the five parameters in args represent call string bound, 
+guiding flag, refinement flag, maximum iterations, time threshold, result file name, and slicing flag, respectively. As show below, args (“1”, “1”
+“0”, “-1”, “0,0,10,0”, “”, “0”) set the guiding flag true, and the time threshold to be 10 seconds.</p>
+
+<p><img src="https://raw.githubusercontent.com/srv4j/images/master/args_moti.jpg" alt="args_rgse" /></p>
+
+<hr />
+
+<h2 id="2-running-rgse"><strong>(2). Running RGSE</strong></h2>
+
+<p>We can run RGSE in two ways, i.e., running the analysis driver as a Java application or running the docker script. The general command 
+for running the script in command line is “./docker_script arg1 arg2 arg3”. The three paremeters are used to specify the running mode.
+Specifically, “0 0 0” is for DFS mode, “0 1 0” is for path slicing mode, and “1 0 0” is for our guiding mode.</p>
+
+<hr />
+<h2 id="3-analysis-result"><strong>(3). Analysis Result</strong></h2>
+<p>The results include the time and memory consumption, explored iterations, iteration for the accepted path, time for finding 
+the first accepted path, and so on. For the toy example and the reader property, the result below show that RGSE can find the 
+program path satisfying the FSM in the <code class="highlighter-rouge">2nd</code> iteration. On the other hand, neither <code class="highlighter-rouge">DFS</code> nor <code class="highlighter-rouge">slicing</code> can find the property violation
+within the time threshold.</p>
+
+<p><img src="https://raw.githubusercontent.com/srv4j/images/master/moti_result.jpg" alt="results" /></p>
+
+<hr />
+
+<h2 id="program-rohino-a"><strong>Program Rohino-a</strong></h2>
+
+<p>The javascript interpreter program <code class="highlighter-rouge">Rohino-a</code> is from the <code class="highlighter-rouge">Ashes suite</code> benchmark. The program can be download from <a href="">this link</a>.</p>
+
+<hr />
+
+<h2 id="1-analysis-driver-1"><strong>(1). Analysis Driver</strong></h2>
+
+<p>The driver gives the entry point of the analysis, and contains two main modules, i.e., 
+property specification and running configuration.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">Property Specification</code>:</li>
+</ul>
+
+<p>We specify the property to be checked as a finite state machine (FSM), where<code class="highlighter-rouge">H</code> and <code class="highlighter-rouge">N</code> represent the
+<code class="highlighter-rouge">hasMoreElements</code> and <code class="highlighter-rouge">nextElement</code> event of the <code class="highlighter-rouge">Enumeration</code> property.</p>
+
+<p><img src="https://raw.githubusercontent.com/srv4j/images/master/FSM_specRohino.jpg" alt="fsm_spec" />
+<img src="https://raw.githubusercontent.com/srv4j/images/master/FSM_bloat.jpg" alt="fsm" /></p>
+
+<hr />
+
+<ul>
+  <li><code class="highlighter-rouge">Running Configuration</code>:</li>
+</ul>
+
+<p>After writing the property specification, we need to configure RGSE. Specifically, the five parameters in args represent call string bound, 
+guiding flag, refinement flag, maximum iterations, time threshold, result file name, and slicing flag, respectively. As show below, args (“1”, “1”
+“0”, “-1”, “0,10,0,0”, “”, “0”) set the guiding flag true, and the time threshold to be 10 minutes.</p>
+
+<p><img src="https://raw.githubusercontent.com/srv4j/images/master/args_rohino.jpg" alt="args" /></p>
+
+<hr />
+
+<h2 id="2-running-rgse-1"><strong>(2). Running RGSE</strong></h2>
+
+<p>We can run RGSE in two ways, i.e., running the analysis driver as a Java application or running the docker script. The general command 
+for running the script in command line is “./docker_script arg1 arg2 arg3”. The three paremeters are used to specify the running mode.
+Specifically, “0 0 0” is for DFS mode, “0 1 0” is for path slicing mode, and “1 0 0” is for our guiding mode.</p>
+
+<hr />
+
+<h2 id="3-analysis-result-1"><strong>(3). Analysis Result</strong></h2>
+<p>The results include the time and memory consumption, explored iterations, iteration for the accepted path, time for finding 
+the first accepted path, and so on. The result below show that RGSE can find the program path satisfying the FSM in seconds. 
+On the other hand, neither <code class="highlighter-rouge">DFS</code> nor <code class="highlighter-rouge">slicing</code> can find the property violation within the time threshold.</p>
+
+<hr />
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="https://github.com/srv4j/temporalTest">temporalTest</a> is maintained by <a href="https://github.com/srv4j">srv4j</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+    
+  </body>
 </html>
