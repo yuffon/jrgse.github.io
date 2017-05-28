@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/temporalTest/assets/css/style.css?v=f77b173e5503ac20c90098059e1e7245511a3330">
+    <link rel="stylesheet" href="/temporalTest/assets/css/style.css?v=e6385aa5d099879fe352412a0d0eca6a66f2d907">
   </head>
   <body>
     <section class="page-header">
@@ -84,7 +84,8 @@ within the time threshold.</p>
 
 <h2 id="program-rohino-a"><strong>Program Rohino-a</strong></h2>
 
-<p>The javascript interpreter program <code class="highlighter-rouge">Rohino-a</code> is from the <code class="highlighter-rouge">Ashes suite</code> benchmark. The program can be download from <a href="">this link</a>.</p>
+<p>The javascript interpreter program <code class="highlighter-rouge">Rohino-a</code> is from the <code class="highlighter-rouge">Ashes suite</code> benchmark. The program can be download 
+from <a href="https://github.com/jrgse/demo/tree/master/example-rhino">this link</a>.</p>
 
 <hr />
 
@@ -111,7 +112,7 @@ property specification and running configuration.</p>
 
 <p>After writing the property specification, we need to configure RGSE. Specifically, the five parameters in args represent call string bound, 
 guiding flag, refinement flag, maximum iterations, time threshold, result file name, and slicing flag, respectively. As show below, args (“1”, “1”
-“0”, “-1”, “0,10,0,0”, “”, “0”) set the guiding flag true, and the time threshold to be 10 minutes.</p>
+“0”, “-1”, “0,10,0,0”, “”, “0”) set the guiding flag true, and the time threshold to be 30 minutes.</p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/args_rohino.jpg" alt="args" /></p>
 
@@ -127,8 +128,10 @@ Specifically, “0 0 0” is for DFS mode, “0 1 0” is for path slicing mode,
 
 <h2 id="3-analysis-result-1"><strong>(3). Analysis Result</strong></h2>
 <p>The results include the time and memory consumption, explored iterations, iteration for the accepted path, time for finding 
-the first accepted path, and so on. The result below show that RGSE can find the program path satisfying the FSM in seconds. 
-On the other hand, neither <code class="highlighter-rouge">DFS</code> nor <code class="highlighter-rouge">slicing</code> can find the property violation within the time threshold.</p>
+the first accepted path, and so on. The result below show that RGSE can find the program path satisfying the FSM in 1707841 
+seconds (about 28 minutes). On the other hand, neither <code class="highlighter-rouge">DFS</code> nor <code class="highlighter-rouge">slicing</code> can find the property violation even within 1 hour.</p>
+
+<p><img src="https://raw.githubusercontent.com/srv4j/images/master/rohino_result.jpg" alt="results" /></p>
 
 <hr />
 
