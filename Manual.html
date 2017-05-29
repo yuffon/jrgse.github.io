@@ -18,73 +18,74 @@
 
     <section class="main-content">
       <h1 id="manual">Manual for Running Docker Image</h1>
-<p>The commands of running RGSE are as follows, and we suggest you use the Linux operating system and run the commands as the root user.</p>
+<p><font size="4">The commands of running <b>RGSE</b> are as follows, and we suggest you use the <b>Linux</b> 
+operating system and run the commands as the <b>root</b> user.</font></p>
 
 <hr />
 
 <h2 id="install docker"><strong>(1). Install docker </strong></h2>
 
-<p>We suppose that you have installed the docker environment, otherwise please go to 
-<a href="https://docs.docker.com/engine/installation/" class="btn">this link</a> for help.</p>
+<p><font size="4">We suppose that you have installed the <b>docker</b> environment, otherwise please go to 
+<a href="https://docs.docker.com/engine/installation/" class="btn">this link</a> for help.</font></p>
 
 <hr />
 
 <h2 id="start docker"><strong>(2). Start the docker service</strong></h2>
 
-<p>service docker start</p>
+<p><font color="#0000FF" size="4">service docker start</font></p>
 
 <hr />
 
 <h2 id="load image"><strong>(3). Load the docker image</strong></h2>
 
-<p>docker load < rgse.tar</p>
+<p><font color="#0000FF" size="4">docker load < rgse.tar</font></p>
 
 <hr />
 <h2 id="result folder"><strong>(4). Create the result folder</strong></h2>
 
-<p>mkdir /root/result</p>
+<p><font color="#0000FF" size="4">mkdir /root/result</font></p>
 
 <hr />
 
 <h2 id="run scripts"><strong>(5). Run the test scripts</strong></h2>
 
-<p>Running the test scripts downloaded from <a href="https://github.com/jrgse/demo" class="btn">this link</a>. 
+<p><font size="4">Running the test scripts downloaded from <a href="https://github.com/jrgse/demo" class="btn">this link</a>. 
 We set the time threshold to be 5 minutes in default, you can adjust it through changing the value of period in the running script.
-We take the program BMPDecoder for an example. The general command is "./docker_runBMPDecoder arg1 arg2".</p>
+We take the program BMPDecoder for an example. The general command is <b>"./docker_runBMPDecoder arg1 arg2"</b>.</font></p>
 
-<p> DFS mode:  ./ docker_runBMPDecoder 0 0</p>
+<p><font size="4"> DFS mode:</font>  <font color="#0000FF" size="4"> ./ docker_runBMPDecoder 0 0</font></p>
 
-<p> Slicing mode:  ./ docker_runBMPDecoder 0 1</p>
+<p><font size="4"> Slicing mode:</font>  <font color="#0000FF" size="4"> ./ docker_runBMPDecoder 0 1</font></p>
 
-<p> Guiding mode:  ./ docker_runBMPDecoder 1 0</p>
+<p><font size="4"> Guiding mode:</font>  <font color="#0000FF" size="4"> ./ docker_runBMPDecoder 1 0</font></p>
 
 <hr />
 
 <h2 id="results"><strong>(6). Check the results</strong></h2>
 
-<p>the results are stored in the directory <code class="highlighter-rouge">/root/result</code> that you created in step 4. 
+<p><font size="4">the results are stored in the directory <code class="highlighter-rouge">/root/result</code> that you created in step 4. 
 For example, <code class="highlighter-rouge">TestBMPwithSlicing.0.0.result, TestBMPwithSlicing.0.1.result,</code> 
 and <code class="highlighter-rouge">TestBMPwithSlicing.1.0.result</code> are the result files for the 
 <code class="highlighter-rouge">DFS</code> mode, <code class="highlighter-rouge">path slicing</code> mode, 
 and <code class="highlighter-rouge">guiding</code> mode, respectively. At the bottom of the result file, you can find 
-the detailed running statistics, e.g., the explored paths and time consumption.</p>
+the detailed running statistics, e.g., the explored paths and time consumption.</font></p>
 
 <hr />
 
 <h2 id="contacts"><strong>Contacts</strong></h2>
 
-<p> Please feel free to contact us if you have any problem.</p>
+<p> <font size="4">Please feel free to contact us if you have any problem.</font></p>
 
 <ul>
-  <li><code class="highlighter-rouge">hengbiaoyu@nudt.edu.cn</code>:</li>
+  <li><code class="highlighter-rouge"><font color="#0000FF" size="4">hengbiaoyu@nudt.edu.cn</font></code>:</li>
 </ul>
 
 <ul>
-  <li><code class="highlighter-rouge">yuffonzhang@163.com</code>:</li>
+  <li><code class="highlighter-rouge"><font color="#0000FF" size="4">yuffonzhang@163.com</font></code>:</li>
 </ul>
 
 <ul>
-  <li><code class="highlighter-rouge">zbchen@nudt.edu.cn</code>:</li>
+  <li><code class="highlighter-rouge"><font color="#0000FF" size="4">zbchen@nudt.edu.cn</font></code>:</li>
 </ul>
  
   </body>
