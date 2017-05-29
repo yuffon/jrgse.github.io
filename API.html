@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/temporalTest/assets/css/style.css?v=e6385aa5d099879fe352412a0d0eca6a66f2d907">
+  </head>
+  <body>
+    <section class="page-header">
+
+      
+      
+    </section>
+
+    <section class="main-content">
+      <h1 id="API">API Documentation</h1>
+<p>We explain the main APIs used in writing the specification and running configuration.</p>
+
+<hr />
+
+<h2 id="Symbolic"><strong>Function for making a variable symbolic</strong></h2>
+
+<p><code class="highlighter-rouge">makeConcolicInteger("sym_m", "a")</code>: This function will make the variable m symbolic (denoted as sym_m), and initialize m with the concrete value a. </p>
+
+<hr />
+
+<h2 id="Specification"><strong>Function for building the property's FSA</strong></h2>
+
+<p><code class="highlighter-rouge">FiniteStateAutomaton getForwardFSAAntlr()</code>: This function is used to specify the regular property as a deterministic finite state automaton (FSA). </p>
+
+<hr />
+
+<h2 id="FSA"><strong> Functions in class FiniteStateAutomaton</strong></h2>
+
+<p><code class="highlighter-rouge">(1). FiniteStateAutomaton()</code>: The construction function of class FiniteStateAutomon, and it will return an empty finite state automaton. </p>
+
+<p><code class="highlighter-rouge">(2). createState(Point p)</code>: Return a state in FSA. The parameter p is a point that specifies a location in the coordinate space. </p>
+
+<p><code class="highlighter-rouge">(3). addTransition(Transition t)</code>: Add a transition t to the FSA. The argument t is the transition to be added. Specifically, a transition
+can be constructed by invoking "new FSATransition(s0, s1, "I")", which means executing event I can drive state s0 to s1.</p>
+
+<hr />
+
+<h2 id="monitor"><strong> Functions in class MonitorWithDFA, which is used for building a Java monitor</strong></h2>
+
+<p><code class="highlighter-rouge">(1). MonitorWithDFA(FiniteStateAutomaton fsa)</code>: Construct a monitor according to the given FiniteStateAutomaton fsa.</p>
+
+<p><code class="highlighter-rouge">(2). addSensitiveEvent(String typeName, String methodName)</code>: Suppose the monitor is constructed by an FSA fsa, and this function 
+is used to describe the transition events in fsa. For example, suppose instruction instr is a method call instruction, if the class name 
+of the invoked method equals parameter typeName and the method name equals parameter methodName, then instr is a sensitive event of the property</p>
+
+<p><code class="highlighter-rouge">(3). addMethodNameChar(String methodName, Char ch)</code>: This function associate a sensitive method named methodName with the transition
+ symbolic ch in the FiniteStateAutomaton fsa. For example, the FiniteStateAutomaton fsa has a transition (s0, s1, "I"), if we invoked 
+ addMethodNameChar("init", "I"), then when we encouter a instruction that invoked a method named "init", state s0 will be updated to state s1.</p>
+
+
+<hr />
+
+<h2 id="arguments"><strong>Function for initializing arguments.</strong></h2>
+
+<p><code class="highlighter-rouge">initArgs(String[] args)</code>: This function sets the running configuration. The parameter args is an array with seven string elements, and they 
+represent call string bounds, property guided, refinement, iteration number, iteration period, result file name, and doing slicing, 
+respectively. For example, suppose args equals {"1", "1", "0", "-1", "0,0,100,0","","0"}, then the call string bound is 1, RGSE will run 
+in the guiding mode, no refinement, no iteration threshold, the time threshold is 100 seconds 
+(the type of the four elements are hour, minute, second, millisecond, respectively), empty result file, and no slicing. </p>
+
+<hr />
+ 
+  </body>
+</html>
