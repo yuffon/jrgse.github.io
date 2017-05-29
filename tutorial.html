@@ -18,15 +18,17 @@
 
     <section class="main-content">
       <h1 id="tutorials">﻿Tutorials</h1>
-<p>we provide two tutorials for RGSE. We first apply RGSE to analyze a motivation program with respect to the <code class="highlighter-rouge">reader</code> property, i.e., the inputStreamReader cannot read while closed. 
-Then, we present the analyzing for program <code class="highlighter-rouge">Rohino-a</code> with respect to the <code class="highlighter-rouge">Enumeration</code> property, i.e., invoking hasMoreElements before nextElement.</p>
+<p><font size="4">we provide two tutorials for RGSE. We first apply RGSE to analyze a <b>motivation</b> program with respect to the <font color="#0000FF">reader
+</font> property, i.e., the inputStreamReader cannot read while closed. 
+Then, we present the analyzing for program <b>Rohino-a</b> with respect to 
+the <font color="#0000FF">Enumeration</font> property, i.e., invoking hasMoreElements before nextElement.</font></p>
 
 <hr />
 
 <h2 id="a-motivation-example"><strong>A Motivation Example</strong></h2>
 
-<p>The motivation example is shown below. We make the three integer variables m, n, and tag symbolic, and initialize them to 1, 1, and 5, respectively. 
-Obviously, when tag equals 0 and n is positive, a violation of the reader property exists.</p>
+<p><font size="4">The motivation example is shown below. We make the three integer variables <i>m</i>, <i>n</i>, and <i>tag</i> symbolic, and initialize them to 1, 1, and 5, respectively. 
+Obviously, when <i>tag</i> equals 0 and <i>n</i> is positive, a violation of the <font color="#0000FF">reader</font> property exists.</font></p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/moti.jpg" alt="program" /></p>
 
@@ -34,16 +36,18 @@ Obviously, when tag equals 0 and n is positive, a violation of the reader proper
 
 <h2 id="1-analysis-driver"><strong>(1). Analysis Driver</strong></h2>
 
-<p>The driver gives the entry point of the analysis, and contains two main modules, i.e., 
-property specification and running configuration.</p>
+<p><font size="4">The driver gives the entry point of the analysis, and contains two main modules, i.e., 
+<b>property specification</b> and <b>running configuration</b>.<font size="4"></p>
 
 <ul>
-  <li><code class="highlighter-rouge">Property Specification</code>:</li>
+  <li><code class="highlighter-rouge"><font size="4">Property Specification</font></code>:</li>
 </ul>
 
-<p>We specify the property to be checked as a finite state machine (FSM), where <code class="highlighter-rouge">I</code>, <code class="highlighter-rouge">R</code>, and <code class="highlighter-rouge">C</code> represent the <code class="highlighter-rouge">init</code>, 
-<code class="highlighter-rouge">read</code>, and <code class="highlighter-rouge">close</code> event of the <code class="highlighter-rouge">reader</code> property. We recognize an event through comparing its class type and method 
-name with the property specification.</p>
+<p><font size="4">We specify the property to be checked as a finite state machine (FSM), 
+where <i>I</i>, <i>R</i>, and <i>C</i> represent the <i>init</i>, 
+<i>read</i>, and <i>close</i> event of the <font color="#0000FF">
+reader</font> property. We recognize an event through comparing its class type and method 
+name with the property specification.<font size="4"></p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/FSA_moti.jpg" alt="fsm_spec" />
 <img src="https://raw.githubusercontent.com/srv4j/images/master/FSM.jpg" alt="fsm" /></p>
@@ -51,12 +55,14 @@ name with the property specification.</p>
 <hr />
 
 <ul>
-  <li><code class="highlighter-rouge">Running Configuration</code>:</li>
+  <li><code class="highlighter-rouge"><font size="4">Running Configuration</font></code>:</li>
 </ul>
 
-<p>After writing the property specification, we need to configure RGSE. Specifically, the five parameters in args represent call string bound, 
-guiding flag, refinement flag, maximum iterations, time threshold, result file name, and slicing flag, respectively. As show below, args (“1”, “1”
-“0”, “-1”, “0,0,10,0”, “”, “0”) set the guiding flag true, and the time threshold to be 10 seconds.</p>
+<p><font size="4">After writing the property specification, we need to configure <b>RGSE</b>. 
+Specifically, the five parameters in args represent <b>call string bound</b>, 
+<b>property guided</b>, <b>refinement flag</b>, <b>iteration threshold</b>, <b>time threshold</b>, <b>result file name</b>, 
+and <b>slicing flag</b>, respectively. As show below, args <i>(“1”, “1”
+“0”, “-1”, “0,0,10,0”, “”, “0”)</i> enables <b>property guiding</b>, and sets the <b>time threshold</b> to be 10 seconds.</font></p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/args_moti.jpg" alt="args_rgse" /></p>
 
@@ -64,16 +70,18 @@ guiding flag, refinement flag, maximum iterations, time threshold, result file n
 
 <h2 id="2-running-rgse"><strong>(2). Running RGSE</strong></h2>
 
-<p>We can run RGSE in two ways, i.e., running the analysis driver as a Java application or running the docker script. The general command 
-for running the script in command line is “./docker_script arg1 arg2”. The two paremeters are used to specify the running mode.
-Specifically, “0 0” is for DFS mode, “0 1” is for path slicing mode, and “1 0” is for our guiding mode.</p>
+<p><font size="4">We can run <b>RGSE</b> in two ways, i.e., running the analysis driver as a Java application 
+or running the docker script. The general command 
+for running the script in command line is <b>“./docker_script arg1 arg2”</b>. The two paremeters are used to specify the running mode.
+Specifically, <b>“0 0”</b> is for <b>DFS</b> mode, <b>“0 1”</b> is for <b>path slicing</b> mode, and <b>“1 0”</b> is for our <b>guiding</b> mode.<font size="4"></p>
 
 <hr />
 <h2 id="3-analysis-result"><strong>(3). Analysis Result</strong></h2>
-<p>The results include the time and memory consumption, explored iterations, iteration for the accepted path, time for finding 
-the first accepted path, and so on. For the toy example and the reader property, the result below show that RGSE can find the 
-program path satisfying the FSM in the <code class="highlighter-rouge">2nd</code> iteration. On the other hand, neither <code class="highlighter-rouge">DFS</code> nor <code class="highlighter-rouge">slicing</code> can find the property violation
-within the time threshold.</p>
+<p><font size="4">The results include the time and memory consumption, explored iterations, iteration for the accepted path, time for finding 
+the first accepted path, and so on. For the <b>motivation</b> example and the <font color="#0000FF">reader</font> property, the results below show 
+that <b>RGSE</b> can find the program path satisfying the FSM in the <b>2nd</b> iteration. 
+On the other hand, neither <b>DFS</b> nor <b>slicing</b> can find the property violation
+within the time threshold.</font></p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/moti_result.jpg" alt="results" /></p>
 
@@ -81,22 +89,24 @@ within the time threshold.</p>
 
 <h2 id="program-rohino-a"><strong>Program Rohino-a</strong></h2>
 
-<p>The javascript interpreter program <code class="highlighter-rouge">Rohino-a</code> is from the <code class="highlighter-rouge">Ashes suite</code> benchmark. The program can be download 
-from <a href="https://github.com/jrgse/demo/tree/master/example-rhino">this link</a>.</p>
+<p><font size="4">The javascript interpreter program <b>Rohino-a</b> is from the <b>Ashes suite</b> benchmark. The program can be download 
+from <a href="https://github.com/jrgse/demo/tree/master/example-rhino">this link</a>.</font></p>
 
 <hr />
 
 <h2 id="1-analysis-driver-1"><strong>(1). Analysis Driver</strong></h2>
 
-<p>The driver gives the entry point of the analysis, and contains two main modules, i.e., 
-property specification and running configuration.</p>
+<p><font size="4">The driver gives the entry point of the analysis, and contains two main modules, i.e., 
+<b>property specification</b> and <b>running configuration</b>.</font></p>
 
 <ul>
-  <li><code class="highlighter-rouge">Property Specification</code>:</li>
+  <li><code class="highlighter-rouge"><font size="4">Property Specification</font></code>:</li>
 </ul>
 
-<p>We specify the property to be checked as a finite state machine (FSM), where<code class="highlighter-rouge">H</code> and <code class="highlighter-rouge">N</code> represent the
-<code class="highlighter-rouge">hasMoreElements</code> and <code class="highlighter-rouge">nextElement</code> event of the <code class="highlighter-rouge">Enumeration</code> property.</p>
+<p><font size="4">We specify the property to be checked as a finite state machine (FSM), 
+where<i>H</i> and <i>N</i> represent the
+<i>hasMoreElements</i> and <i>nextElement</i> 
+event of the <font color="#0000FF">Enumeration</font> property.<font size="4"></p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/FSM_specRohino.jpg" alt="fsm_spec" />
 <img src="https://raw.githubusercontent.com/srv4j/images/master/FSM_bloat.jpg" alt="fsm" /></p>
@@ -104,12 +114,14 @@ property specification and running configuration.</p>
 <hr />
 
 <ul>
-  <li><code class="highlighter-rouge">Running Configuration</code>:</li>
+  <li><code class="highlighter-rouge"><font size="4">Running Configuration</font></code>:</li>
 </ul>
 
-<p>After writing the property specification, we need to configure RGSE. Specifically, the five parameters in args represent call string bound, 
-guiding flag, refinement flag, maximum iterations, time threshold, result file name, and slicing flag, respectively. As show below, args (“1”, “1”
-“0”, “-1”, “0,10,0,0”, “”, “0”) set the guiding flag true, and the time threshold to be 30 minutes.</p>
+<p><font size="4">After writing the property specification, we need to configure <b>RGSE</b>. Specifically,
+ the five parameters in args represent <b>call string bound</b>, 
+<b>property guided</b>, <b>refinement flag</b>, <b>iteration threshold</b>, <b>time threshold</b>, <b>result file name</b>, 
+and <b>slicing flag</b>, respectively. As show below, args <i>(“1”, “1”
+“0”, “-1”, “0,30,0,0”, “”, “0”)</i> enables <b>property guiding</b>, and sets the <b>time threshold</b> to be 30 minutes.</font></p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/args_rohino.jpg" alt="args" /></p>
 
@@ -117,16 +129,18 @@ guiding flag, refinement flag, maximum iterations, time threshold, result file n
 
 <h2 id="2-running-rgse-1"><strong>(2). Running RGSE</strong></h2>
 
-<p>We can run RGSE in two ways, i.e., running the analysis driver as a Java application or running the docker script. The general command 
-for running the script in command line is “./docker_script arg1 arg2 arg3”. The three paremeters are used to specify the running mode.
-Specifically, “0 0 0” is for DFS mode, “0 1 0” is for path slicing mode, and “1 0 0” is for our guiding mode.</p>
+<p><font size="4">We can run <b>RGSE</b> in two ways, i.e., running the analysis driver as a Java application or 
+running the docker script. The general command 
+for running the script in command line is <b>“./docker_script arg1 arg2”</b>. The two paremeters are used to specify the running mode.
+Specifically, <b>“0 0”</b> is for <b>DFS</b> mode, <b>“0 1”</b> is for <b>path slicing</b> mode, and <b>“1 0”</b> is for the <b>guiding</b> mode.</font></p>
 
 <hr />
 
 <h2 id="3-analysis-result-1"><strong>(3). Analysis Result</strong></h2>
-<p>The results include the time and memory consumption, explored iterations, iteration for the accepted path, time for finding 
-the first accepted path, and so on. The result below show that RGSE can find the program path satisfying the FSM in 1707841 
-seconds (about 28 minutes). On the other hand, neither <code class="highlighter-rouge">DFS</code> nor <code class="highlighter-rouge">slicing</code> can find the property violation even within 1 hour.</p>
+<p><font size="4">The results include the time and memory consumption, explored iterations, iteration for the accepted path, time for finding 
+the first accepted path, and so on. The results below show that <b>RGSE</b> can find the program path satisfying the FSM in <b>1707X</b> 
+seconds (about <b>28 minutes</b>). On the other hand, neither <b>DFS</b> 
+nor <b>slicing</b> can find the property violation even within <b>1 hour</b>.</font></p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/rohino_result.jpg" alt="results" /></p>
 
