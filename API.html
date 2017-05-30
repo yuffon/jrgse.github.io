@@ -18,14 +18,14 @@
 
     <section class="main-content">
       <h1 id="API">API Documentation</h1>
-<p><font size="4">We explain the main APIs used in writing the specification and running configuration.</p>
+<p><font size="4">We explain the main APIs used in writing the specification and configuring <b>RGSE</b>.</p>
 
 <hr />
 
 <h2 id="Symbolic"><strong>Function for making a variable symbolic</strong></h2>
 
 <p><code class="highlighter-rouge"><b><font color="#0000FF" size="4">makeConcolicInteger("sym_m", "a")</font></b></code><font size="4">: 
-This function will make the variable <i>m</i> symbolic (denoted as <i>sym_m</i>), and initialize <i>m</i> with the concrete value <i>a</i>. </font></p>
+This function will make a variable symbolic (denoted as <i>sym_m</i>), and initialize it to the concrete value <i>a</i>. </font></p>
 
 <hr />
 
@@ -42,7 +42,7 @@ This function will make the variable <i>m</i> symbolic (denoted as <i>sym_m</i>)
 <font size="4">: The construction function of the class <b><i>FiniteStateAutomon</i></b>, and it will return an empty finite state automaton.</font></p>
 
 <p><code class="highlighter-rouge"><b><font color="#0000FF">(2). createState(Point p)</font></b></code>
-<font size="4">: Return a state in FSA. The parameter <i>p</i> is a point that specifies a location in the coordinate space. </font></p>
+<font size="4">: Create a state in FSA. The parameter <i>p</i> is a point that specifies a location in the coordinate space. </font></p>
 
 <p><code class="highlighter-rouge"><b><font color="#0000FF">(3). addTransition(Transition t)</font></b></code>
 <font size="4">: Add a transition to the FSA, and parameter <i>t</i> is the transition to be added. Specifically, a transition
@@ -61,11 +61,11 @@ can be constructed by invoking function <b><i>"new FSATransition(s0, s1, "I")"</
 <font size="4">: Suppose the monitor is constructed by an FSA <i>fsa</i>, then this function 
 is used to describe the transition events in <i>fsa</i>. For example, suppose instruction <i>instr</i> is a method call instruction, 
 if the class name of the invoked method equals parameter <i>typeName</i> and the method name equals parameter <i>methodName</i>, 
-then <i>instr</i> is a sensitive event of the regular property</font></p>
+then <i>instr</i> is a sensitive event of the regular property.</font></p>
 
 <p><code class="highlighter-rouge"><b><font color="#0000FF">(3). addMethodNameChar(String methodName, Char ch)</font></b></code>
-<font size="4">: This function associate a sensitive method named <i>methodName</i> with the transition
- symbolic <i>ch</i> in the FiniteStateAutomaton <i>fsa</i>. For example, suppose the FiniteStateAutomaton <i>fsa</i> has a transition <i>(s0, s1, "I")</i>, 
+<font size="4">: This function associates a sensitive method named <i>methodName</i> with the transition
+ label <i>ch</i> in the FiniteStateAutomaton <i>fsa</i>. For example, suppose the FiniteStateAutomaton <i>fsa</i> has a transition <i>(s0, s1, "I")</i>, 
  if we invoked <i>addMethodNameChar("init", "I")</i>, then when we encouter a instruction that invoked a method named <i>init</i>,
  state <i>s0</i> will be updated to state <i>s1</i>.</font></p>
 
@@ -78,9 +78,9 @@ then <i>instr</i> is a sensitive event of the regular property</font></p>
 <font size="4">: This function sets the running configuration. The parameter args is an array with seven string elements, and they 
 represent <b><i>call string bound</i></b>, <b><i>property guided</i></b>, <b><i>refinement flag</i></b>, <b><i>iteration number</i></b>,
  <b><i>iteration period</i></b>, <b><i>result file name</i></b>, and <b><i>slicing flag</i></b>, 
-respectively. For example, suppose the args equals {"1", "1", "0", "-1", "0,0,100,0","","0"}, then the call string bound is 1, <b>RGSE</b> will run 
+respectively. For example, suppose the args equals {"1", "1", "0", "-1", "0,0,100,0","","0"}, then the call string bound is 1, and <b>RGSE</b> will run 
 in the guiding mode with no refinement, no iteration threshold, 100 seconds time threshold  
-(the type of the four elements are hour, minute, second, millisecond, respectively), empty result file, and no slicing.</font></p>
+(the types of the four elements are hour, minute, second, millisecond, respectively), empty result file, and no slicing.</font></p>
 
 <hr />
  
