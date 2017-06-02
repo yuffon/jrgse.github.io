@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/temporalTest/assets/css/style.css?v=e6385aa5d099879fe352412a0d0eca6a66f2d907">
+  </head>
+  <body>
+    <section class="page-header">
+
+      
+      
+    </section>
+
+    <section class="main-content">
+      <h1 id="manual">Manual for installation of RGSE</h1>
+<p><font size="5">
+RGSE can be installed in two ways: <font color="#0000FF">install the docker image of RGSE</font> or 
+<font color="#0000FF">create an Eclipse project for RGSE</font></font></p>
+
+<hr />
+<br>
+<br>
+<li><code class="highlighter-rouge"><font size="5" color="blue"><b>Install RGSE in Eclipse</b></font></code>:</li>
+
+<p><font size="4">To run <b>RGSE</b>, The Java IDE <b>Eclipse</b> needs to support the <b>PDE</b> (Plug-in Develop Environment).
+We suppose that you created a java project named <b>TestDriver</b></font></p>
+
+<h2 id="Z3"><strong>(1). Install Z3 </strong></h2>
+
+<p><font size="4">Install the <b>Z3</b> Theorem Prover [<a href="https://github.com/Z3Prover/z3" class="btn">Z3 Website</a>] 
+in the your operating system, and put the libz3java.dylib [<a href="https://github.com/jrgse/demo/blob/master/libz3java.dylib" class="btn">Download Link</a>] 
+and libz3java.so [<a href="https://github.com/jrgse/demo/blob/master/libz3java.so" class="btn">Download Link</a>]
+in the directory <b>"pathToTestDriver/"</b>.</font></p>
+
+<h2 id="Jar Files"><strong>(2). Import the Jar Files</strong></h2>
+
+<p><font size="4">Create a folder named <b>lib</b> in the directory <b>"pathToTestDriver/"</b>, and 
+put the auxiliary Jar files [<a href="https://github.com/jrgse/demo/tree/master/jar%20files" class="btn">Download Link</a>] in the <b>lib</b>.
+Then, you should add all the Jar files to the <b>build path</b> of the <b>TestDriver project</b>.</font></p>
+
+<h2 id="JPF-nhandler"><strong>(3). Creat the File for JPF-nhandler</strong></h2>
+
+<p><font size="4">Create a folder called <b>"onthefly"</b> in the directory <b>"pathToTestDriver/"</b> (Note that such a folder is essential to run JPF-nhandler)</b>.</font></p>
+
+<h2 id="WALA"><strong>(4). Import the WALA Project</strong></h2>
+
+<p><font size="4">Download the <b>WALA</b> project [<a href="https://github.com/jrgse/demo/tree/master/wala" class="btn">Download Link</a>], 
+add them to the dependent projects of the <b>TestDriver project</b>.
+Note that you need to configure <b>WALA</b> according to your <b>JDK</b> installation,
+i.e., change the value of <b>java_runtime_dir</b> in the file <b>com.ibm.wala.core/dat/wala.properties</b>. </font></p>
+
+<h2 id="Static Analysis"><strong>(5). Create the Files for Static Analysis</strong></h2>
+
+<p><font size="4">Put the file <b>Include.txt</b> [<a href="https://github.com/jrgse/demo/blob/master/Include.txt" class="btn">Download Link</a>] 
+and the file <b>Exclusions.txt</b> [<a href="https://github.com/jrgse/demo/blob/master/Exclusions.txt" class="btn">Download Link</a>] in the directory <b>"pathToTestDriver/src"</b>.
+Note that you should change <b>"bin/moti"</b> in the file <b>Include.txt</b> to the location of your own package, e.g., <b>"bin/yourPackageName"</b>.</font></p> 
+
+<h2 id="WALA"><strong>(6). Import the Setting File for RGSE</strong></h2>
+
+<p><font size="4">Download the configuration file RGSE [<a href="https://github.com/jrgse/demo/blob/master/rgse.jpf" class="btn">Download Link</a>],
+ and put it in the directory <b>"pathToTestDriver/"</b>.
+ 
+<h2 id="WALA"><strong>(7). Write the Analysis Driver</strong></h2>
+<p><font size="4">You can download the motivation example [<a href="https://github.com/jrgse/demo/blob/master/Example.java" class="btn">Download Link</a>]
+and its analysis driver [<a href="https://github.com/jrgse/demo/blob/master/TestMotiExamplewithSlicing.java" class="btn">Download Link</a>] for reference. 
+Note that you should the change the following arguments with respect to your program: <b>symMethod</b>, <b>symMethodSig</b>,
+ <b>classname</b>, and <b>mainClassName</b> in the <b>main</b> function and <b>classpath</b> in the <b>createArgsMotiExample</b> function. 
+ In addition, the implementation of function <b>getForwardFSAAntlr</b> (FSM) and function <b>setProperty</b> (Java monitor) depends on the property to be verified. 
+It is worth noting that the <b>tutorials</b> 
+[<a href="https://jrgse.github.io/tutorial.html" class="btn">Link</a>] can also help you to write an analysis driver.</font></p>
+
+<h2 id="WALA"><strong>(8). Run the Analysis Driver</strong></h2>
+ 
+<p><font size="4">Build the <b>TestDriver project</b>, and run it as a Java application.</font></p>
+
+<hr />
+
+<br>
+<br>
+<li><code class="highlighter-rouge"><font size="5" color="blue"><b>Install the Docker image of RGSE</b></font></code>:</li>
+
+<p><font size="4">We suggest you use the <b>Linux</b> operating system and run the commands as the <b>root</b> user.</font></p>
+
+<h2 id="install docker"><strong>(1). Install docker </strong></h2>
+
+<p><font size="4">We suppose that you have installed the <b>docker</b> environment, otherwise please go to 
+<a href="https://docs.docker.com/engine/installation/" class="btn">this link</a> for help.</font></p>
+
+
+<h2 id="start docker"><strong>(2). Start the docker service</strong></h2>
+
+<p><font color="#0000FF" size="4">service docker start</font></p>
+
+
+<h2 id="load image"><strong>(3). Load the docker image</strong></h2>
+
+<p><font color="#0000FF" size="4">docker load < rgse.tar</font></p>
+
+<h2 id="result folder"><strong>(4). Create the result folder</strong></h2>
+
+<p><font color="#0000FF" size="4">mkdir /root/result</font></p>
+
+<h2 id="run scripts"><strong>(5). Run the test scripts</strong></h2>
+
+<p><font size="4">Running the test scripts downloaded from <a href="https://github.com/jrgse/demo" class="btn">this link</a>. 
+We set the time threshold to be 5 minutes in default, you can adjust it through changing the value of the time period in the running script.
+We take the program BMPDecoder for an example. The general command is <b>"./docker_runBMPDecoder arg1 arg2"</b>.</font></p>
+
+<p><font size="4"> DFS mode:</font>  <font color="#0000FF" size="4"> ./ docker_runBMPDecoder 0 0</font></p>
+
+<p><font size="4"> Slicing mode:</font>  <font color="#0000FF" size="4"> ./ docker_runBMPDecoder 0 1</font></p>
+
+<p><font size="4"> Guiding mode:</font>  <font color="#0000FF" size="4"> ./ docker_runBMPDecoder 1 0</font></p>
+
+<h2 id="results"><strong>(6). Check the results</strong></h2>
+
+<p><font size="4">The results are stored in the directory <b>/root/result</b> that you created in step 4. 
+For example, <b>TestBMPwithSlicing.0.0.result, TestBMPwithSlicing.0.1.result,</b> 
+and <b>TestBMPwithSlicing.1.0.result</b> are the result files for the 
+<b>DFS</b> mode, <b>path slicing</b> mode, 
+and <b>guiding</b> mode, respectively. At the bottom of the result file, you can find 
+the detailed running statistics, e.g., the explored paths and time consumption.</font></p>
+
+<hr />
+
+<h2 id="contacts"><strong>Contacts</strong></h2>
+
+<p> <font size="4">Please feel free to contact us if you have any problem.</font></p>
+
+<ul>
+  <li><code class="highlighter-rouge"><font color="#0000FF" size="4">hengbiaoyu@nudt.edu.cn</font></code></li>
+</ul>
+
+<ul>
+  <li><code class="highlighter-rouge"><font color="#0000FF" size="4">yuffonzhang@163.com</font></code></li>
+</ul>
+
+<ul>
+  <li><code class="highlighter-rouge"><font color="#0000FF" size="4">zbchen@nudt.edu.cn</font></code></li>
+</ul>
+ 
+  </body>
+</html>
