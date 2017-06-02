@@ -18,57 +18,57 @@
 
     <section class="main-content">
       <h1 id="manual">Manual for installation of RGSE</h1>
-<p><font size="5">
+<p><font size="4">
 RGSE can be installed in two ways: <font color="#0000FF">install the docker image of RGSE</font> or 
-<font color="#0000FF">create an Eclipse project for RGSE</font></font></p>
+<font color="#0000FF">install RGSE as a Java project in Eclipse</font></font></p>
 
 <hr />
 <br>
 <br>
-<li><code class="highlighter-rouge"><font size="5" color="blue"><b>Install RGSE in Eclipse</b></font></code>:</li>
+<li><font size="5" color="blue"><b>Install RGSE in Eclipse</b></font></li>
 
 <p><font size="4">To run <b>RGSE</b>, The Java IDE <b>Eclipse</b> needs to support the <b>PDE</b> (Plug-in Develop Environment).
-We suppose that you created a java project named <b>TestDriver</b></font></p>
+We suppose that you created a java project named <b>AnalysisDriver</b></font></p>
 
 <h2 id="Z3"><strong>(1). Install Z3 </strong></h2>
 
 <p><font size="4">Install the <b>Z3</b> Theorem Prover [<a href="https://github.com/Z3Prover/z3" class="btn">Z3 Website</a>] 
 in the your operating system, and put the libz3java.dylib [<a href="https://github.com/jrgse/demo/blob/master/libz3java.dylib" class="btn">Download Link</a>] 
 and libz3java.so [<a href="https://github.com/jrgse/demo/blob/master/libz3java.so" class="btn">Download Link</a>]
-in the directory <b>"pathToTestDriver/"</b>.</font></p>
+in the directory <b>"pathToAnalysisDriver/"</b>.</font></p>
 
 <h2 id="Jar Files"><strong>(2). Import the Jar Files</strong></h2>
 
-<p><font size="4">Create a folder named <b>lib</b> in the directory <b>"pathToTestDriver/"</b>, and 
+<p><font size="4">Create a folder named <b>lib</b> in the directory <b>"pathToAnalysisDriver/"</b>, and 
 put the auxiliary Jar files [<a href="https://github.com/jrgse/demo/tree/master/jar%20files" class="btn">Download Link</a>] in the <b>lib</b>.
-Then, you should add all the Jar files to the <b>build path</b> of the <b>TestDriver project</b>.</font></p>
+Then, you should add all the Jar files to the <b>build path</b> of the <b>AnalysisDriver project</b>.</font></p>
 
 <h2 id="JPF-nhandler"><strong>(3). Creat the File for JPF-nhandler</strong></h2>
 
-<p><font size="4">Create a folder called <b>"onthefly"</b> in the directory <b>"pathToTestDriver/"</b> (Note that such a folder is essential to run JPF-nhandler)</b>.</font></p>
+<p><font size="4">Create a folder called <b>"onthefly"</b> in the directory <b>"pathToAnalysisDriver/"</b> (Note that such a folder is essential to run JPF-nhandler)</b>.</font></p>
 
 <h2 id="WALA"><strong>(4). Import the WALA Project</strong></h2>
 
 <p><font size="4">Download the <b>WALA</b> project [<a href="https://github.com/jrgse/demo/tree/master/wala" class="btn">Download Link</a>], 
-add them to the dependent projects of the <b>TestDriver project</b>.
+add them to the dependent projects of the <b>AnalysisDriver project</b>.
 Note that you need to configure <b>WALA</b> according to your <b>JDK</b> installation,
 i.e., change the value of <b>java_runtime_dir</b> in the file <b>com.ibm.wala.core/dat/wala.properties</b>. </font></p>
 
 <h2 id="Static Analysis"><strong>(5). Create the Files for Static Analysis</strong></h2>
 
 <p><font size="4">Put the file <b>Include.txt</b> [<a href="https://github.com/jrgse/demo/blob/master/Include.txt" class="btn">Download Link</a>] 
-and the file <b>Exclusions.txt</b> [<a href="https://github.com/jrgse/demo/blob/master/Exclusions.txt" class="btn">Download Link</a>] in the directory <b>"pathToTestDriver/src"</b>.
+and the file <b>Exclusions.txt</b> [<a href="https://github.com/jrgse/demo/blob/master/Exclusions.txt" class="btn">Download Link</a>] in the directory <b>"pathToAnalysisDriver/src"</b>.
 Note that you should change <b>"bin/moti"</b> in the file <b>Include.txt</b> to the location of your own package, e.g., <b>"bin/yourPackageName"</b>.</font></p> 
 
 <h2 id="WALA"><strong>(6). Import the Setting File for RGSE</strong></h2>
 
 <p><font size="4">Download the configuration file RGSE [<a href="https://github.com/jrgse/demo/blob/master/rgse.jpf" class="btn">Download Link</a>],
- and put it in the directory <b>"pathToTestDriver/"</b>.
+ and put it in the directory <b>"pathToAnalysisDriver/"</b>.
  
 <h2 id="WALA"><strong>(7). Write the Analysis Driver</strong></h2>
 <p><font size="4">You can download the motivation example [<a href="https://github.com/jrgse/demo/blob/master/Example.java" class="btn">Download Link</a>]
 and its analysis driver [<a href="https://github.com/jrgse/demo/blob/master/TestMotiExamplewithSlicing.java" class="btn">Download Link</a>] for reference. 
-Note that you should the change the following arguments with respect to your program: <b>symMethod</b>, <b>symMethodSig</b>,
+Note that you should change the following arguments with respect to your program: <b>symMethod</b>, <b>symMethodSig</b>,
  <b>classname</b>, and <b>mainClassName</b> in the <b>main</b> function and <b>classpath</b> in the <b>createArgsMotiExample</b> function. 
  In addition, the implementation of function <b>getForwardFSAAntlr</b> (FSM) and function <b>setProperty</b> (Java monitor) depends on the property to be verified. 
 It is worth noting that the <b>tutorials</b> 
@@ -76,13 +76,13 @@ It is worth noting that the <b>tutorials</b>
 
 <h2 id="WALA"><strong>(8). Run the Analysis Driver</strong></h2>
  
-<p><font size="4">Build the <b>TestDriver project</b>, and run it as a Java application.</font></p>
+<p><font size="4">Build the <b>AnalysisDriver project</b>, and run it as a Java application.</font></p>
 
 <hr />
 
 <br>
 <br>
-<li><code class="highlighter-rouge"><font size="5" color="blue"><b>Install the Docker image of RGSE</b></font></code>:</li>
+<li><font size="5" color="blue"><b>Install the Docker image of RGSE</b></font></li>
 
 <p><font size="4">We suggest you use the <b>Linux</b> operating system and run the commands as the <b>root</b> user.</font></p>
 
