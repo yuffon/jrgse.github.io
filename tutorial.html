@@ -54,7 +54,11 @@ the <b>InputStreamReader</b> object <b>w</b> reads while it has been closed.</fo
 where <b>I</b>, <b>R</b>, and <b>C</b> represent the <b>init</b>, 
 <b>read</b>, and <b>close</b> event of the <font color="#0000FF">
 reader</font> property. The property events can be recognized with the help of Java monitors, i.e., 
-comparing the invoked method's name and class type with the property description.<font size="4"></p>
+comparing the invoked method's name and class type with the property description.
+<b>createState</b> and <b>new FSATransition</b> are used to create FSA states and transitions, and details can
+be found in <a href="API.html">API Documentation</a>. <b>Global.shortestPathLength.put(int, int)</b> is used to record the distance from 
+a state to the accepted state, where the first parameter is the state identifier and the second parameter is the distance. 
+<font size="4"></p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/FSA_moti.jpg" alt="fsm_spec" />
 <img src="https://raw.githubusercontent.com/srv4j/images/master/FSM.jpg" alt="fsm" /></p>
@@ -114,7 +118,11 @@ from <a href="https://github.com/jrgse/demo/tree/master/example-rhino">this link
 <p><font size="4">We specify the property to be checked as a finite state automaton (FSA), 
 where <b>H</b> and <b>N</b> represent the
 <b>hasMoreElements</b> and <b>nextElement</b> 
-event of the <font color="#0000FF">Enumeration</font> property.<font size="4"></p>
+event of the <font color="#0000FF">Enumeration</font> property.
+<b>createState</b> and <b>new FSATransition</b> are used to create FSA states and transitions, and details can
+be found in <a href="API.html">API Documentation</a>. <b>Global.shortestPathLength.put(int, int)</b> is used to record the distance from 
+a state to the accepted state, where the first parameter is the state identifier and the second parameter is the distance.
+<font size="4"></p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/FSM_specRohino.jpg" alt="fsm_spec" />
 <img src="https://raw.githubusercontent.com/srv4j/images/master/FSM_bloat.jpg" alt="fsm" /></p>
