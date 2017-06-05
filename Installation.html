@@ -19,14 +19,11 @@
     <section class="main-content">
       <h1 id="manual">Manual for Installing RGSE</h1>
 <p><font size="4">
-RGSE can be installed in two ways: <font color="#0000FF">install the docker image of RGSE</font> or 
-<font color="#0000FF">install RGSE as a Java project in Eclipse</font></font></p>
+RGSE can be installed as a Java project in Eclipse</font></font></p>
 
 <hr />
 <br>
 <br>
-<li><font size="5" color="blue"><b>Install RGSE in Eclipse</b></font></li>
-
 <p><font size="4">To run <b>RGSE</b>, The Java IDE <b>Eclipse</b> needs to support the <b>PDE</b> (Plug-in Develop Environment).
 We suppose that you have created a Java project named <b>AnalysisDriver</b></font></p>
 
@@ -80,56 +77,6 @@ It is worth noting that the <b>tutorials</b>
 <h2 id="WALA"><strong>(8). Run the Analysis Driver</strong></h2>
  
 <p><font size="4">Build the <b>AnalysisDriver project</b>, and run it as a Java application.</font></p>
-
-<hr />
-
-<br>
-<br>
-<li><font size="5" color="blue"><b>Install the Docker image of RGSE</b></font></li>
-
-<p><font size="4">We suggest you use the <b>Linux</b> operating system and run the commands as the <b>root</b> user.</font></p>
-
-<h2 id="install docker"><strong>(1). Install docker </strong></h2>
-
-<p><font size="4">We suppose that you have installed the <b>docker</b> environment, otherwise please go to 
-<a href="https://docs.docker.com/engine/installation/" class="btn">this link</a> for help.
-The docker image can be downloaded from <a href="https://1drv.ms/u/s!Amd07GCbYt_zbQZm2w2MBbXI6Zo" class="btn">download link</a>.
-</font></p>
-
-
-<h2 id="start docker"><strong>(2). Start the docker service</strong></h2>
-
-<p><font color="#0000FF" size="4">service docker start</font></p>
-
-
-<h2 id="load image"><strong>(3). Load the docker image</strong></h2>
-
-<p><font color="#0000FF" size="4">docker load < rgse.tar</font></p>
-
-<h2 id="result folder"><strong>(4). Create the result folder</strong></h2>
-
-<p><font color="#0000FF" size="4">mkdir /root/result</font></p>
-
-<h2 id="run scripts"><strong>(5). Run the test scripts</strong></h2>
-
-<p><font size="4">Running the test scripts downloaded from <a href="https://github.com/jrgse/demo" class="btn">this link</a>. 
-We set the time threshold to be 5 minutes in default, you can adjust it through changing the value of the time period in the running script.
-We take the program BMPDecoder for an example. The general command is <b>"./docker_runBMPDecoder arg1 arg2"</b>.</font></p>
-
-<p><font size="4"> DFS mode:</font>  <font color="#0000FF" size="4"> ./ docker_runBMPDecoder 0 0</font></p>
-
-<p><font size="4"> Slicing mode:</font>  <font color="#0000FF" size="4"> ./ docker_runBMPDecoder 0 1</font></p>
-
-<p><font size="4"> Guiding mode:</font>  <font color="#0000FF" size="4"> ./ docker_runBMPDecoder 1 0</font></p>
-
-<h2 id="results"><strong>(6). Check the results</strong></h2>
-
-<p><font size="4">The results are stored in the directory <b>"/root/result"</b> that you created in step 4. 
-For example, <b>TestBMPwithSlicing.0.0.result, TestBMPwithSlicing.0.1.result,</b> 
-and <b>TestBMPwithSlicing.1.0.result</b> are the result files for the 
-<b>DFS</b> mode, <b>path slicing</b> mode, 
-and <b>guiding</b> mode, respectively. At the bottom of the result file, you can find 
-the detailed running statistics, e.g., the explored paths and time consumption.</font></p>
 
 <hr />
 
