@@ -19,10 +19,9 @@
     <section class="main-content">
       <h1 id="tutorials">﻿Tutorials</h1>
 <p><font size="4">We provide two tutorials for RGSE. We first apply RGSE to analyze a <b>motivation</b> program with respect to the <font color="#0000FF">reader
-</font> property, i.e., the  cannot read while closed. 
+</font> property, i.e., the <b>InputStreamReader</b> cannot read while closed. 
 Then, we present the analysis of program <b>Rohino-a</b> with respect to 
-the <font color="#0000FF">Enumeration</font> property, i.e., invoking hasMoreElements before nextElement.
-Finally, we briefly talk about the usage of RGSE</font></p>
+the <font color="#0000FF">Enumeration</font> property, i.e., invoking hasMoreElements before nextElement.</font></p>
 
 <p><font size="4">It is worth noting that we introduce how to make a variable symbolic 
 detailedly in the <a href="https://jrgse.github.io/API.html">API documentation.</a></font></p>
@@ -32,8 +31,8 @@ detailedly in the <a href="https://jrgse.github.io/API.html">API documentation.<
 <h2 id="a-motivation-example"><strong>A Motivation Example</strong></h2>
 
 <p><font size="4">The motivation example is shown below. We make the three integer variables <b>m</b>, <b>n</b>, and <b>tag</b> symbolic, and initialize them to 1, 1, and 5, respectively. 
-ObviouslinputStreamReadery, when <b>tag</b> equals 0 and <b>n</b> is positive, a violation of the <font color="#0000FF">reader</font> property exists, i.e.,
-the inputStreamReader object <b>w</b> reads while it has been closed.</font></p>
+Obviously, when <b>tag</b> equals 0 and <b>n</b> is positive, a violation of the <font color="#0000FF">reader</font> property exists, i.e.,
+the <b>InputStreamReader</b> object <b>w</b> reads while it has been closed.</font></p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/moti.jpg" alt="program" /></p>
 
@@ -98,7 +97,7 @@ within the time threshold.</font></p>
 
 <h2 id="program-rohino-a"><strong>Program Rohino-a</strong></h2>
 
-<p><font size="4">The javascript interpreter program <b>Rohino-a</b> is from the <b>Ashes suite</b> benchmark. The program can be download 
+<p><font size="4">The Javascript interpreter program <b>Rohino-a</b> is from the <b>Ashes suite</b> benchmark. The program can be downloaded 
 from <a href="https://github.com/jrgse/demo/tree/master/example-rhino">this link</a>.</font></p>
 
 <hr />
@@ -130,7 +129,7 @@ event of the <font color="#0000FF">Enumeration</font> property.<font size="4"></
  the five parameters in args represent <b>call string bound</b>, 
 <b>property guided</b>, <b>refinement flag</b>, <b>iteration threshold</b>, <b>time threshold</b>, <b>result file name</b>, 
 and <b>slicing flag</b>, respectively. As is shown below, args <i>(“1”, “1”
-“0”, “-1”, “0,30,0,0”, “”, “0”)</i> sets the <b>call string bound</b> to be 1, enables <b>property guiding</b>, 
+“0”, “-1”, “0,0,1800,0”, “”, “0”)</i> sets the <b>call string bound</b> to be 1, enables <b>property guiding</b>, 
 and sets the <b>time threshold</b> to be 30 minutes.</font></p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/args_rohino.jpg" alt="args" /></p>
@@ -153,27 +152,6 @@ seconds (about <b>28 minutes</b>). On the other hand, neither <b>DFS</b>
 nor <b>slicing</b> can find the property violation even within <b>1 hour</b>.</font></p>
 
 <p><img src="https://raw.githubusercontent.com/srv4j/images/master/rohino_result.jpg" alt="results" /></p>
-   
-<hr /><h2 id="a-motivation-example"><strong>Usage of RGSE</strong></h2>
-<p><font size="4">(1). Install <b>Z3</b> in your Linux operating system.</font></p>
-<p><font size="4">(2). Download the auxiliary files from <a href="https://github.com/jrgse/demo/tree/master/auxiliary%20files">this link</a>, 
-and import them to your project (We suggest you use the IDE Eclipse).</font></p>
-<p><font size="4">(3). Write the analysis driver for your Java program and property.</font></p>
-<p><font size="4">(4). Build your project and run the analysis driver as a Java application.</font></p>
-
-<p> <font size="4">Please feel free to contact us if you have any problem.</font></p>
-
-<ul>
-  <li><code class="highlighter-rouge"><font color="#0000FF" size="4">hengbiaoyu@nudt.edu.cn</font></code></li>
-</ul>
-
-<ul>
-  <li><code class="highlighter-rouge"><font color="#0000FF" size="4">yuffonzhang@163.com</font></code></li>
-</ul>
-
-<ul>
-  <li><code class="highlighter-rouge"><font color="#0000FF" size="4">zbchen@nudt.edu.cn</font></code></li>
-</ul>
 
   </body>
 </html>
